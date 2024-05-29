@@ -10,14 +10,7 @@ function App() {
   const location = useLocation();
   const navigate=  useNavigate();
 
-  useEffect(()=>{
-    if(location.pathname == '/login' && loggedIn){
-      navigate('/');
-    }
-    if(location.pathname !== '/login' && !loggedIn){
-      navigate('/login');
-    }
-  },[location.pathname])
+  
 
     return ( 
     
@@ -26,7 +19,7 @@ function App() {
     
       <Route path="/login" element={<Login setLoggedIn={setLoggedIn}/>} />
       
-      {loggedIn && <Route path="/" element={<Main setLoggedIn={setLoggedIn}/>} /> }
+      <Route path="/" element={<Main setLoggedIn={setLoggedIn}/>} /> 
 
   </Routes>
     )

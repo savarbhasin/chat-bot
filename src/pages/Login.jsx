@@ -7,9 +7,23 @@ const Login = ({setLoggedIn}) => {
 
     const navigate = useNavigate();
     
-    const handleSubmit = ()=>{
-        setLoggedIn(true);
-        navigate('/');
+    const handleSubmit = async()=>{
+        try{
+            const data = await fetch('http://127.0.0.1:5000/login', {method:'POST',
+        mode: 'cors', 
+        headers: {'Content-Type': 'application/json'}, 
+        body: JSON.stringify({username:email, password})});
+        const response = await data.json();
+        console.log(response)
+        if(response.status){
+            setLoggedIn(data);
+            navigate('/')
+        }
+        
+        } catch(e){
+            console.log(e);
+            
+        }
     }
 
     return (

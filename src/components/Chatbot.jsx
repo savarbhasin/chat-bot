@@ -40,7 +40,7 @@ const Chatbot = () => {
             loading ? 
               <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
               :
-              <input
+              <input autoFocus={true}
                 type="text"
                 className="flex-1 p-2 border border-gray-300 rounded-lg mr-2"
                 placeholder="Type a message..."
