@@ -6,21 +6,27 @@ import { Main } from './pages/Main';
 
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(null);
+  const [loggedIn, setLoggedIn] = useState(false);
   const location = useLocation();
   const navigate=  useNavigate();
 
-  
+  useEffect(()=>{
+    if(location.pathname !== '/login' && !loggedIn){
+      navigate('/login');
+    }
+  },[navigate])
 
     return ( 
     
     <Routes>
 
     
-      <Route path="/login" element={<Login setLoggedIn={setLoggedIn}/>} />
+      <Route path="/login" element={<Login setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>} />
       
-      <Route path="/" element={<Main setLoggedIn={setLoggedIn}/>} /> 
-
+      {
+        loggedIn && <Route path="/" element={<Main setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>} /> 
+      }
+      
   </Routes>
     )
   

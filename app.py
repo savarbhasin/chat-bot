@@ -66,6 +66,7 @@ def logout():
     return jsonify({"status": "success"})
 
 @app.route('/query_gpt', methods=['POST'])
+@cross_origin()
 def query_gpt():
     data = request.get_json()
     prompt = data['prompt']

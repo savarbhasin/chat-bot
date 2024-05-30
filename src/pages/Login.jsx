@@ -1,28 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 
-const Login = ({setLoggedIn}) => {
+const Login = ({setLoggedIn,loggedIn}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const navigate = useNavigate();
     
-    const handleSubmit = async()=>{
+
+    const handleSubmit = async(e)=>{
+        e.preventDefault();
         try{
             const data = await fetch('http://127.0.0.1:5000/login', {method:'POST',
-        mode: 'cors', 
-        headers: {'Content-Type': 'application/json'}, 
-        body: JSON.stringify({username:email, password})});
-        const response = await data.json();
-        console.log(response)
-        if(response.status){
-            setLoggedIn(data);
-            navigate('/')
-        }
-        
+            headers: {'Content-Type': 'application/json'}, 
+            body: JSON.stringify({username:email, password})});
+            const response = await data.json();
+            
+            if(response.status == 'success'){
+                setLoggedIn(true);
+                navigate('/');
+            }
+            
+            else{
+                alert('Invalid credentials');
+            }
         } catch(e){
             console.log(e);
-            
         }
     }
 
