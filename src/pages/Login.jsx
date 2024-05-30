@@ -17,7 +17,7 @@ const Login = ({setLoggedIn,loggedIn}) => {
             const response = await data.json();
             
             if(response.status == 'success'){
-                setLoggedIn(true);
+                setLoggedIn(response.username);
                 navigate('/');
             }
             

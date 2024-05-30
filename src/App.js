@@ -6,7 +6,7 @@ import { Main } from './pages/Main';
 
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(null);
   const location = useLocation();
   const navigate=  useNavigate();
 
